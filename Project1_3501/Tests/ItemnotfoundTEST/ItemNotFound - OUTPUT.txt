@@ -1,0 +1,76 @@
+Inserting: 1
+1
+Operations: 2
+Tree Depth: 1
+_____________________________________________________________
+
+Inserting: 3
+   3
+1
+Operations: 3
+Tree Depth: 2
+_____________________________________________________________
+
+Inserting: 2
+   3
+      2
+1
+Operations: 4
+Tree Depth: 3
+_____________________________________________________________
+
+Inserting: 6
+      6
+   3
+      2
+1
+Operations: 4
+Tree Depth: 3
+_____________________________________________________________
+
+Deleting: 4
+      6
+   3
+      2
+1
+Operations: 5
+Tree Depth: 3
+_____________________________________________________________
+
+Searching: 5
+      6
+   3
+      2
+1
+5 not found
+Operations: 4
+Tree Depth: 3
+_____________________________________________________________
+
+Deleting: 7
+      6
+   3
+      2
+1
+Operations: 5
+Tree Depth: 3
+_____________________________________________________________
+
+Searching: 8
+      6
+   3
+      2
+1
+8 not found
+Operations: 4
+Tree Depth: 3
+_____________________________________________________________
+
+        ItemNotFound - OUTPUT
+                  BST
+Creation           13
+Search             8
+Insert             0
+Delete             10
+                 _________
+Total              31

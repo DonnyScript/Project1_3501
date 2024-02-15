@@ -1,0 +1,45 @@
+Q - is not a valid input 
+_____________________________________________________________
+Searching: 1
+1 not found
+Operations: 1
+Tree Depth: 0
+_____________________________________________________________
+
+Deleting: 1
+Operations: 2
+Tree Depth: 0
+_____________________________________________________________
+
+Inserting: 1
+1
+Operations: 3
+Tree Depth: 1
+_____________________________________________________________
+
+Searching: 1
+1
+1 found 
+Operations: 1
+Tree Depth: 1
+_____________________________________________________________
+
+Deleting: 1
+Operations: 2
+Tree Depth: 0
+_____________________________________________________________
+
+Searching: 1
+1 not found
+Operations: 1
+Tree Depth: 0
+_____________________________________________________________
+
+        Empty Tree - OUTPUT
+                  BST
+Creation           0
+Search             3
+Insert             1
+Delete             4
+                 _________
+Total              8

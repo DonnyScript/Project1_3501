@@ -1,0 +1,10 @@
+Action file is empty
+Input file is empty
+        Empty All - OUTPUT
+                  BST
+Creation           0
+Search             0
+Insert             0
+Delete             0
+                 _________
+Total              0

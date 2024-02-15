@@ -1,0 +1,105 @@
+Input file is empty
+Searching: 20
+20 not found
+Operations: 1
+Tree Depth: 0
+_____________________________________________________________
+
+Searching: 88
+88 not found
+Operations: 1
+Tree Depth: 0
+_____________________________________________________________
+
+Searching: 4
+4 not found
+Operations: 1
+Tree Depth: 0
+_____________________________________________________________
+
+Searching: 41
+41 not found
+Operations: 1
+Tree Depth: 0
+_____________________________________________________________
+
+Searching: 73
+73 not found
+Operations: 1
+Tree Depth: 0
+_____________________________________________________________
+
+Searching: 41
+41 not found
+Operations: 1
+Tree Depth: 0
+_____________________________________________________________
+
+Searching: 20
+20 not found
+Operations: 1
+Tree Depth: 0
+_____________________________________________________________
+
+Searching: 1
+1 not found
+Operations: 1
+Tree Depth: 0
+_____________________________________________________________
+
+Searching: 73
+73 not found
+Operations: 1
+Tree Depth: 0
+_____________________________________________________________
+
+Searching: 88
+88 not found
+Operations: 1
+Tree Depth: 0
+_____________________________________________________________
+
+Searching: 6
+6 not found
+Operations: 1
+Tree Depth: 0
+_____________________________________________________________
+
+Searching: 41
+41 not found
+Operations: 1
+Tree Depth: 0
+_____________________________________________________________
+
+Searching: 91
+91 not found
+Operations: 1
+Tree Depth: 0
+_____________________________________________________________
+
+Searching: 43
+43 not found
+Operations: 1
+Tree Depth: 0
+_____________________________________________________________
+
+Searching: 20
+20 not found
+Operations: 1
+Tree Depth: 0
+_____________________________________________________________
+
+Searching: 41
+41 not found
+Operations: 1
+Tree Depth: 0
+_____________________________________________________________
+
+        Insert Empty - OUTPUT
+                  BST
+Creation           0
+Search             16
+Insert             0
+Delete             0
+                 _________
+Total              16
