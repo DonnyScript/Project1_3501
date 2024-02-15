@@ -130,6 +130,8 @@ TreeNode* BinarySearchTree::deleteNode(TreeNode* root, int value) {
 
 		TreeNode* current = root->right;
 		while (current && current->left != nullptr) {
+			operationCtr++;
+			actionCT[3]++;
 			current = current->left;
 		}
 		root->data = current->data;
@@ -139,7 +141,6 @@ TreeNode* BinarySearchTree::deleteNode(TreeNode* root, int value) {
 		}
 		root->right = deleteNode(root->right, current->data);
 	}
-
 	return root;
 }
 

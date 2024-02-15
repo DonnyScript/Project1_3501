@@ -113,7 +113,7 @@ Deleting: 51
          15
                10
             9
-Operations: 4
+Operations: 5
 Tree Depth: 6
 _____________________________________________________________
 
@@ -149,7 +149,7 @@ Deleting: 64
       15
             10
          9
-Operations: 4
+Operations: 5
 Tree Depth: 5
 _____________________________________________________________
 
@@ -198,11 +198,11 @@ Operations: 2
 Tree Depth: 0
 _____________________________________________________________
 
-        DeleteAll - OUTPUT
+        DEL ALL - OUTPUT
                   BST
 Creation           45
 Search             0
 Insert             0
-Delete             29
+Delete             31
                  _________
-Total              74
+Total              76
