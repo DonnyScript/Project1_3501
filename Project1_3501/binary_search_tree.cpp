@@ -171,7 +171,6 @@ void BinarySearchTree::displayTree(TreeNode* root, int depth) {
 
 void BinarySearchTree::insert(int value,int ctr) {
 	root = insertRecursive(root, value,ctr);
-	incOpCnt();
 	ofstream outputFile(BinarySearchTree::testTitle, ios::app);
 
 	if (outputFile.is_open()) {
@@ -349,6 +348,7 @@ void PreformAction::actOnTree(BinarySearchTree& treePass, vector<string> data) {
 
 
 		if (actCommand == keys[0]) {
+			treePass.actionCT[2]++;
 			treePass.incOpCnt();
 			treePass.insert(integer,2);
 		}

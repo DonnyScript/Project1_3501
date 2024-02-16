@@ -13,7 +13,7 @@ _____________________________________________________________
 
 Inserting: 1
 1
-Operations: 3
+Operations: 2
 Tree Depth: 1
 _____________________________________________________________
 
@@ -35,11 +35,11 @@ Operations: 1
 Tree Depth: 0
 _____________________________________________________________
 
-        Empty Tree - OUTPUT
+        Empty - OUTPUT
                   BST
 Creation           0
 Search             3
-Insert             1
+Insert             2
 Delete             4
                  _________
-Total              8
+Total              9

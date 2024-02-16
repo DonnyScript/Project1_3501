@@ -1,13 +1,13 @@
 Inserting: 1
 1
-Operations: 2
+Operations: 1
 Tree Depth: 1
 _____________________________________________________________
 
 Inserting: 3
    3
 1
-Operations: 3
+Operations: 2
 Tree Depth: 2
 _____________________________________________________________
 
@@ -15,7 +15,7 @@ Inserting: 2
    3
       2
 1
-Operations: 4
+Operations: 3
 Tree Depth: 3
 _____________________________________________________________
 
@@ -24,7 +24,7 @@ Inserting: 6
    3
       2
 1
-Operations: 4
+Operations: 3
 Tree Depth: 3
 _____________________________________________________________
 

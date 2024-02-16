@@ -1,13 +1,13 @@
 Inserting: 1
 1
-Operations: 2
+Operations: 1
 Tree Depth: 1
 _____________________________________________________________
 
 Inserting: 2
    2
 1
-Operations: 3
+Operations: 2
 Tree Depth: 2
 _____________________________________________________________
 
@@ -15,7 +15,7 @@ Inserting: 4
       4
    2
 1
-Operations: 4
+Operations: 3
 Tree Depth: 3
 _____________________________________________________________
 
@@ -24,7 +24,7 @@ Inserting: 8
       4
    2
 1
-Operations: 5
+Operations: 4
 Tree Depth: 4
 _____________________________________________________________
 
@@ -34,7 +34,7 @@ Inserting: 16
       4
    2
 1
-Operations: 6
+Operations: 5
 Tree Depth: 5
 _____________________________________________________________
 
@@ -44,7 +44,7 @@ Inserting: 16
       4
    2
 1
-Operations: 6
+Operations: 5
 Tree Depth: 5
 _____________________________________________________________
 
@@ -54,7 +54,7 @@ Inserting: 8
       4
    2
 1
-Operations: 5
+Operations: 4
 Tree Depth: 5
 _____________________________________________________________
 
@@ -64,7 +64,7 @@ Inserting: 4
       4(2)
    2
 1
-Operations: 4
+Operations: 3
 Tree Depth: 5
 _____________________________________________________________
 
@@ -74,7 +74,7 @@ Inserting: 2
       4(2)
    2(2)
 1
-Operations: 3
+Operations: 2
 Tree Depth: 5
 _____________________________________________________________
 
@@ -84,7 +84,7 @@ Inserting: 1
       4(2)
    2(2)
 1(2)
-Operations: 2
+Operations: 1
 Tree Depth: 5
 _____________________________________________________________
 
