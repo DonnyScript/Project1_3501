@@ -188,8 +188,6 @@ void BinarySearchTree::insert(int value,int ctr) {
 		outputFile << "_____________________________________________________________" << endl;
 		cout << endl;
 		outputFile << endl;
-
-
 	}
 	outputFile.close();
 }
