@@ -21,6 +21,7 @@ struct TreeNode {
 
 class BinarySearchTree {
 private:
+    int balance;
     string testTitle;
     int operationCtr;
     int opTotal;
