@@ -30,6 +30,7 @@ int main() {
 		bst.insert(val,0);
 	}
 	Test.setAVLHeight(bst.root);
+	Test.setNodeBalance(bst.root);
 
 	return 0;
 }

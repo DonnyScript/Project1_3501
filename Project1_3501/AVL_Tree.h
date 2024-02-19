@@ -9,6 +9,7 @@ private:
 
 public:
     int setAVLHeight(TreeNode* Current);
+    int setNodeBalance(TreeNode* Current);
 
 
 };
