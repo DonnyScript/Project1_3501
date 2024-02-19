@@ -1,6 +1,26 @@
 #include "AVL_Tree.h"
 using namespace std; 
 
+TreeNode* AVLTree::insertRecursive(TreeNode* root, int value, int ctr){
+	operationCtr++;
+	actionCT[ctr]++;
+	if (root == nullptr) {
+		return new TreeNode(value);
+	}
+	else if (root->data == value) {
+		root->twin++;
+	}
+
+	if (value < root->data) {
+		root->left = insertRecursive(root->left, value, ctr);
+	}
+	else if (value > root->data) {
+		root->right = insertRecursive(root->right, value, ctr);
+	}
+
+	return root;
+}
+
 int AVLTree::setAVLHeight(TreeNode* Current){
 	if (Current == nullptr) {
 		return 0;
@@ -12,9 +32,9 @@ int AVLTree::setAVLHeight(TreeNode* Current){
 	return(1 + max(leftheight, rightHeight));
 }
 
-int AVLTree::setNodeBalance(TreeNode* Current){
+void AVLTree::setNodeBalance(TreeNode* Current){
 	if (Current == nullptr) {
-		return 0;
+		return;
 	}
 
 	int leftNodeHeight = 0, rightNodeHeight = 0;
@@ -30,5 +50,5 @@ int AVLTree::setNodeBalance(TreeNode* Current){
 	setNodeBalance(Current->left);
 	setNodeBalance(Current->right);
 
-	return 0;
+	return;
 }

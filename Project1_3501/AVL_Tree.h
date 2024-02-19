@@ -6,10 +6,10 @@
 
 class AVLTree : BinarySearchTree {
 private:
-
+    TreeNode* insertRecursive(TreeNode* root, int value, int ctr);
 public:
     int setAVLHeight(TreeNode* Current);
-    int setNodeBalance(TreeNode* Current);
+    void setNodeBalance(TreeNode* Current);
 
 
 };

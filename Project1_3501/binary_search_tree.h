@@ -22,7 +22,7 @@ struct TreeNode {
 };
 
 class BinarySearchTree {
-private:
+protected:
     string testTitle;
     int operationCtr;
     int opTotal;
