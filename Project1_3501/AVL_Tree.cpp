@@ -17,6 +17,8 @@ TreeNode* AVLTree::insertRecursive(TreeNode* root, int value, int ctr){
 	else if (value > root->data) {
 		root->right = insertRecursive(root->right, value, ctr);
 	}
+	setAVLHeight(root);
+	setNodeBalance(root);
 
 	return root;
 }
@@ -51,4 +53,27 @@ void AVLTree::setNodeBalance(TreeNode* Current){
 	setNodeBalance(Current->right);
 
 	return;
+}
+
+void AVLTree::insert(int value, int ctr){
+	root = insertRecursive(root, value, ctr);
+	ofstream outputFile(BinarySearchTree::testTitle, ios::app);
+
+	if (outputFile.is_open()) {
+		cout << "Inserting: " << value << endl;
+		outputFile << "Inserting: " << value << endl;
+
+		displayTree(root, 0);
+
+		cout << "Tree Depth: " << treeHeight(root) << endl;
+		cout << "Operations: " << getOpCount() << endl;
+		outputFile << "Operations: " << getOpCount() << endl;
+		outputFile << "Tree Depth: " << treeHeight(root) << endl;
+		resetOpCount();
+		cout << "_____________________________________________________________" << endl;
+		outputFile << "_____________________________________________________________" << endl;
+		cout << endl;
+		outputFile << endl;
+	}
+	outputFile.close();
 }

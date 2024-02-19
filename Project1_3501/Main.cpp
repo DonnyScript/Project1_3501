@@ -18,19 +18,17 @@ int main() {
 	vector<string> actionValues;
 	BinarySearchTree bst;
 	PreformAction actOnFile;
-	AVLTree Test;
+	AVLTree AVLTree;
 	actOnFile.setTitle(testTitle);
 	bst.setTitle(testTitle);
+	AVLTree.setTitle(testTitle);
 
-	actionValues = bst.readandCheckAction(actionFile);
-	nodeValues = bst.readAndCheckInput(initialTree);
+	nodeValues = AVLTree.readAndCheckInput(initialTree);
+	actionValues = AVLTree.readandCheckAction(actionFile);
 
 	for (int val : nodeValues) {
-		bst.actionCT[0]++;
-		bst.insert(val,0);
+		AVLTree.insert(val,0);
 	}
-	Test.setAVLHeight(bst.root);
-	Test.setNodeBalance(bst.root);
 
 	return 0;
 }
