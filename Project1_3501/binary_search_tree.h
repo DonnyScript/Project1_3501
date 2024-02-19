@@ -13,6 +13,8 @@ void removeWhitespaceAtEnd(string& filename);
 struct TreeNode {
     int data;
     int twin = 1;
+    int height = 1;
+    int balance = 0;
     TreeNode* left;
     TreeNode* right;
 
@@ -21,7 +23,6 @@ struct TreeNode {
 
 class BinarySearchTree {
 private:
-    int balance;
     string testTitle;
     int operationCtr;
     int opTotal;

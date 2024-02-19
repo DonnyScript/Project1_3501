@@ -1,4 +1,4 @@
-#include "binary_search_tree.h"
+#include "AVL_Tree.h"
 
 using namespace std;
 
@@ -18,7 +18,7 @@ int main() {
 	vector<string> actionValues;
 	BinarySearchTree bst;
 	PreformAction actOnFile;
-
+	AVLTree Test;
 	actOnFile.setTitle(testTitle);
 	bst.setTitle(testTitle);
 
@@ -29,8 +29,7 @@ int main() {
 		bst.actionCT[0]++;
 		bst.insert(val,0);
 	}
-
-	actOnFile.actOnTree(bst, actionValues);
+	Test.setAVLHeight(bst.root);
 
 	return 0;
 }

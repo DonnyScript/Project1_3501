@@ -8,6 +8,7 @@ class AVLTree : BinarySearchTree {
 private:
 
 public:
+    int setAVLHeight(TreeNode* Current);
 
 
 };
