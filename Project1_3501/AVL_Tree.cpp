@@ -119,5 +119,6 @@ TreeNode* AVLTree::rightRotate(TreeNode* Current){
 
 	Current->height = 1 + max(Current->left->height, Current->right->height);
 	A->height = 1 + max(A->left->height, A->right->height);
-	
+
+	return A;
 }
