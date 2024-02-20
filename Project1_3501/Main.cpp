@@ -1,4 +1,4 @@
-#include "binary_search_tree.h"
+#include "AVL_Tree.h"
 
 using namespace std;
 
@@ -18,19 +18,18 @@ int main() {
 	vector<string> actionValues;
 	BinarySearchTree bst;
 	PreformAction actOnFile;
-
+	AVLTree AVL_DATA;
 	actOnFile.setTitle(testTitle);
 	bst.setTitle(testTitle);
+	AVL_DATA.setTitle(testTitle);
 
-	actionValues = bst.readandCheckAction(actionFile);
-	nodeValues = bst.readAndCheckInput(initialTree);
+	nodeValues = AVL_DATA.readAndCheckInput(initialTree);
+	actionValues = AVL_DATA.readandCheckAction(actionFile);
 
 	for (int val : nodeValues) {
-		bst.actionCT[0]++;
-		bst.insert(val,0);
+		AVL_DATA.actionCT[0]++;
+		AVL_DATA.insert(val,0);
 	}
-
-	actOnFile.actOnTree(bst, actionValues);
 
 	return 0;
 }

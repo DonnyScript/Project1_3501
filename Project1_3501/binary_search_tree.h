@@ -13,6 +13,8 @@ void removeWhitespaceAtEnd(string& filename);
 struct TreeNode {
     int data;
     int twin = 1;
+    int height = 1;
+    int balance = 0;
     TreeNode* left;
     TreeNode* right;
 
@@ -20,7 +22,7 @@ struct TreeNode {
 };
 
 class BinarySearchTree {
-private:
+protected:
     string testTitle;
     int operationCtr;
     int opTotal;
@@ -34,7 +36,6 @@ public:
     int getOpTotal();
     int actionCT[4];
     int getOpCount();
-    void incOpCnt();
     void resetOpCount();
     BinarySearchTree();
     void deleteValue(int value);
@@ -57,5 +58,7 @@ public:
     void actOnTree(BinarySearchTree &TreeNode, vector<string> data);
     void displayReportSummary(BinarySearchTree& TreeNode, vector<string> data);
 };
+
+
 
 #endif
