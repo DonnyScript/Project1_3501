@@ -3,7 +3,6 @@
 
 #include "binary_search_tree.h"
 
-
 class AVLTree : public BinarySearchTree {
 private:
     int setAVLHeight(TreeNode* Current);
@@ -15,8 +14,6 @@ private:
 public:
 
     void insert(int value, int ctr);
-
-
 
 };
 
