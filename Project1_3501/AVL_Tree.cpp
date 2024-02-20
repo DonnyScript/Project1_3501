@@ -2,7 +2,6 @@
 using namespace std; 
 
 int AVLTree::getHeight(TreeNode* node) {
-	operationCtr++;
 	if (node == nullptr) {
 		return 0;
 	}
@@ -10,7 +9,6 @@ int AVLTree::getHeight(TreeNode* node) {
 }
 
 int AVLTree::getBalance(TreeNode* node) {
-	operationCtr++;
 	if (node == nullptr) {
 		return 0;
 	}
