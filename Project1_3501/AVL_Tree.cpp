@@ -2,6 +2,7 @@
 using namespace std; 
 
 int AVLTree::setAVLHeight(TreeNode* Current){
+	operationCtr++;
 	if (Current == nullptr) {
 		return 0;
 	}
@@ -14,6 +15,7 @@ int AVLTree::setAVLHeight(TreeNode* Current){
 }
 
 void AVLTree::setNodeBalance(TreeNode* Current){
+	operationCtr++;
 	if (Current == nullptr) {
 		return;
 	}
@@ -35,6 +37,7 @@ void AVLTree::setNodeBalance(TreeNode* Current){
 }
 
 TreeNode* AVLTree::leftRotate(TreeNode* Current) {
+	operationCtr++;
 	TreeNode* B = Current->right;
 	TreeNode* Y = B->left;
 
@@ -48,6 +51,7 @@ TreeNode* AVLTree::leftRotate(TreeNode* Current) {
 }
 
 TreeNode* AVLTree::rightRotate(TreeNode* Current) {
+	operationCtr++;
 	TreeNode* B = Current->left;
 	TreeNode* Y = B->right;
 
@@ -63,7 +67,6 @@ TreeNode* AVLTree::rightRotate(TreeNode* Current) {
 TreeNode* AVLTree::insertRotateRecursive(TreeNode* Current, int value, int ctr) {
 	operationCtr++;
 	actionCT[ctr]++;
-
 	if (Current == nullptr) {
 		return new TreeNode(value);
 	}
