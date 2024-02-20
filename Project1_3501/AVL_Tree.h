@@ -6,6 +6,8 @@
 class AVLTree : public BinarySearchTree {
 private:
     int setAVLHeight(TreeNode* Current);
+    int getHeight(TreeNode* node);
+    int getBalance(TreeNode* node);
     void setNodeBalance(TreeNode* Current);
     TreeNode* insertRotateRecursive(TreeNode* Current, int value, int ctr);
     TreeNode* leftRotate(TreeNode* Current);

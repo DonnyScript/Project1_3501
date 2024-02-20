@@ -1,39 +1,20 @@
 #include "AVL_Tree.h"
 using namespace std; 
 
-int AVLTree::setAVLHeight(TreeNode* Current){
+int AVLTree::getHeight(TreeNode* node) {
 	operationCtr++;
-	if (Current == nullptr) {
+	if (node == nullptr) {
 		return 0;
 	}
-
-	int leftheight = setAVLHeight(Current->left);
-	int rightHeight = setAVLHeight(Current->right);
-	Current->height = 1 + max(leftheight, rightHeight);
-
-	return(1 + max(leftheight, rightHeight));
+	return node->height;
 }
 
-void AVLTree::setNodeBalance(TreeNode* Current){
+int AVLTree::getBalance(TreeNode* node) {
 	operationCtr++;
-	if (Current == nullptr) {
-		return;
+	if (node == nullptr) {
+		return 0;
 	}
-
-	int leftNodeHeight = 0, rightNodeHeight = 0;
-
-	if (Current->left != nullptr) {
-		leftNodeHeight = Current->left->height;
-	}
-	if (Current->right != nullptr) {
-		rightNodeHeight = Current->right->height;
-	}
-	Current->balance = leftNodeHeight - rightNodeHeight;
-
-	setNodeBalance(Current->left);
-	setNodeBalance(Current->right);
-
-	return;
+	return getHeight(node->left) - getHeight(node->right);
 }
 
 TreeNode* AVLTree::leftRotate(TreeNode* Current) {
@@ -80,24 +61,20 @@ TreeNode* AVLTree::insertRotateRecursive(TreeNode* Current, int value, int ctr) 
 		root->twin++;
 	}
 
-	int leftHeight = (Current->left != nullptr) ? Current->left->height : 0;
-	int rightHeight = (Current->right != nullptr) ? Current->right->height : 0;
-	Current->height = 1 + max(leftHeight, rightHeight);
+	Current->height = 1 + max(getHeight(Current->left), getHeight(Current->right));
+	Current->balance = getBalance(Current);
 
-	setAVLHeight(Current);
-	setNodeBalance(Current);
-
-	if (Current->left != nullptr && Current->balance > 1 && value < Current->left->data) {
+	if (Current->balance > 1 && value < Current->left->data) {
 		return rightRotate(Current);
 	}
-	if (Current->right != nullptr && Current->balance < -1 && value > Current->right->data) {
+	if (Current->balance < -1 && value > Current->right->data) {
 		return leftRotate(Current);
 	}
-	if (Current->left != nullptr && Current->balance > 1 && value > Current->left->data) {
+	if (Current->balance > 1 && value > Current->left->data) {
 		Current->left = leftRotate(Current->left);
 		return rightRotate(Current);
 	}
-	if (Current->right != nullptr && Current->balance < -1 && value < Current->right->data) {
+	if (Current->balance < -1 && value < Current->right->data) {
 		Current->right = rightRotate(Current->right);
 		return leftRotate(Current);
 	}
