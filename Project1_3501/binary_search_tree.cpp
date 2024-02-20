@@ -170,7 +170,7 @@ void BinarySearchTree::displayTree(TreeNode* root, int depth) {
 }
 
 void BinarySearchTree::insert(int value,int ctr) {
-	root = insertRecursive(root, value,ctr);
+	root = insertRecursive(root, value, ctr);
 	ofstream outputFile(BinarySearchTree::testTitle, ios::app);
 
 	if (outputFile.is_open()) {
@@ -262,7 +262,6 @@ bool BinarySearchTree::searchRec(TreeNode* root, int value){
 	}
 }
 
-
 int BinarySearchTree::getOpTotal()
 {
 	return opTotal;
@@ -271,11 +270,6 @@ int BinarySearchTree::getOpTotal()
 int BinarySearchTree::getOpCount()
 {
 	return operationCtr;
-}
-
-void BinarySearchTree::incOpCnt()
-{
-	operationCtr++;
 }
 
 void BinarySearchTree::resetOpCount()
@@ -347,12 +341,12 @@ void PreformAction::actOnTree(BinarySearchTree& treePass, vector<string> data) {
 
 		if (actCommand == keys[0]) {
 			treePass.actionCT[2]++;
-			treePass.incOpCnt();
+			operationCtr++;
 			treePass.insert(integer,2);
 		}
 		else if (actCommand == keys[1]) {
 			treePass.deleteValue(integer);
-			treePass.incOpCnt();
+			operationCtr++;
 			treePass.actionCT[3]++;
 
 			cout << "Deleting: " << integer << endl;

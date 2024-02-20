@@ -1,47 +1,6 @@
 #include "AVL_Tree.h"
 using namespace std; 
 
-TreeNode* AVLTree::insertRecursive(TreeNode* root, int value, int ctr){
-	operationCtr++;
-	actionCT[ctr]++;
-	if (root == nullptr) {
-		return new TreeNode(value);
-	}
-	else if (root->data == value) {
-		root->twin++;
-	}
-
-	if (value < root->data) {
-		root->left = insertRecursive(root->left, value, ctr);
-	}
-	else if (value > root->data) {
-		root->right = insertRecursive(root->right, value, ctr);
-	}
-
-	setAVLHeight(root);
-	setNodeBalance(root);
-	
-	return root;
-}
-
-TreeNode* AVLTree::insertRotateRecursive(TreeNode* Current, int value, int ctr){
-	if (root == nullptr) {
-		return new TreeNode(value);
-	}
-	else if (value < Current->data) {
-		Current->left = insertRotateRecursive(Current->left, value, ctr);
-	}
-	else if (value > Current->data) {
-		Current->right = insertRotateRecursive(Current->right, value, ctr);
-	}
-
-	Current->height = 1 + max(Current->left->height, Current->right->height);
-	int balanceFactor = Current->balance; 
-
-
-	return Current;
-}
-
 int AVLTree::setAVLHeight(TreeNode* Current){
 	if (Current == nullptr) {
 		return 0;
@@ -50,6 +9,7 @@ int AVLTree::setAVLHeight(TreeNode* Current){
 	int leftheight = setAVLHeight(Current->left);
 	int rightHeight = setAVLHeight(Current->right);
 	Current->height = 1 + max(leftheight, rightHeight);
+
 	return(1 + max(leftheight, rightHeight));
 }
 
@@ -74,8 +34,76 @@ void AVLTree::setNodeBalance(TreeNode* Current){
 	return;
 }
 
+TreeNode* AVLTree::leftRotate(TreeNode* Current) {
+	TreeNode* B = Current->right;
+	TreeNode* Y = B->left;
+
+	B->left = Current;
+	Current->right = Y;
+
+	Current->height = 1 + max(Current->left->height, Current->right->height);
+	B->height = 1 + max(B->left->height, B->right->height);
+
+	return B;
+}
+
+TreeNode* AVLTree::rightRotate(TreeNode* Current) {
+	TreeNode* B = Current->left;
+	TreeNode* Y = B->right;
+
+	B->right = Current;
+	Current->left = Y;
+
+	Current->height = 1 + max(Current->left->height, Current->right->height);
+	B->height = 1 + max(B->left->height, B->right->height);
+
+	return B;
+}
+
+TreeNode* AVLTree::insertRotateRecursive(TreeNode* Current, int value, int ctr) {
+	operationCtr++;
+	actionCT[ctr]++;
+
+	if (Current == nullptr) {
+		return new TreeNode(value);
+	}
+	else if (value < Current->data) {
+		Current->left = insertRotateRecursive(Current->left, value, ctr);
+	}
+	else if (value > Current->data) {
+		Current->right = insertRotateRecursive(Current->right, value, ctr);
+	}
+	else if (root->data == value) {
+		root->twin++;
+	}
+
+	int leftHeight = (Current->left != nullptr) ? Current->left->height : 0;
+	int rightHeight = (Current->right != nullptr) ? Current->right->height : 0;
+	Current->height = 1 + max(leftHeight, rightHeight);
+
+	setAVLHeight(Current);
+	setNodeBalance(Current);
+
+	if (Current->left != nullptr && Current->balance > 1 && value < Current->left->data) {
+		return rightRotate(Current);
+	}
+	if (Current->right != nullptr && Current->balance < -1 && value > Current->right->data) {
+		return leftRotate(Current);
+	}
+	if (Current->left != nullptr && Current->balance > 1 && value > Current->left->data) {
+		Current->left = leftRotate(Current->left);
+		return rightRotate(Current);
+	}
+	if (Current->right != nullptr && Current->balance < -1 && value < Current->right->data) {
+		Current->right = rightRotate(Current->right);
+		return leftRotate(Current);
+	}
+
+	return Current;
+}
+
 void AVLTree::insert(int value, int ctr){
-	root = insertRecursive(root, value, ctr);
+	root = insertRotateRecursive(root, value, ctr);
 	ofstream outputFile(BinarySearchTree::testTitle, ios::app);
 
 	if (outputFile.is_open()) {
@@ -95,30 +123,4 @@ void AVLTree::insert(int value, int ctr){
 		outputFile << endl;
 	}
 	outputFile.close();
-}
-
-TreeNode* AVLTree::leftRotate(TreeNode* Current){
-	TreeNode* B = Current->right;
-	TreeNode* Y = B->left;
-
-	B->left = Current;
-	Current->right = Y;
-	
-	Current->height = 1 + max(Current->left->height, Current->right->height);
-	B->height = 1 + max(B->left->height, B->right->height);
-
-	return B;
-}
-
-TreeNode* AVLTree::rightRotate(TreeNode* Current){
-	TreeNode* A = Current->left;
-	TreeNode* Y = A->right;
-
-	A->right = Current;
-	Current->left = Y;
-
-	Current->height = 1 + max(Current->left->height, Current->right->height);
-	A->height = 1 + max(A->left->height, A->right->height);
-
-	return A;
 }

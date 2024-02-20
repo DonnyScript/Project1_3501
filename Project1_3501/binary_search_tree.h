@@ -36,7 +36,6 @@ public:
     int getOpTotal();
     int actionCT[4];
     int getOpCount();
-    void incOpCnt();
     void resetOpCount();
     BinarySearchTree();
     void deleteValue(int value);
