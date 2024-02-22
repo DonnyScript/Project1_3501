@@ -370,6 +370,3 @@ void PreformAction::actOnTree(BinarySearchTree& treePass, vector<string> data) {
 	}
 	displayReportSummary(treePass, data);
 }
-
-
-
