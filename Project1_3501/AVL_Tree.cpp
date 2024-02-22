@@ -18,6 +18,14 @@ int AVLTree::updateHeight(TreeNode* node) {
 	return 1 + max(leftHeight, rightHeight);
 }
 
+TreeNode* AVLTree::leftRotate(TreeNode* Current) {
+	return rotate(Current, true);
+}
+
+TreeNode* AVLTree::rightRotate(TreeNode* Current) {
+	return rotate(Current, false);
+}
+
 TreeNode* AVLTree::rotate(TreeNode* Current, bool isLeft) {
 	operationCtr++;
 	TreeNode* B = isLeft ? Current->right : Current->left;
@@ -42,14 +50,6 @@ TreeNode* AVLTree::rotate(TreeNode* Current, bool isLeft) {
 	return B;
 }
 
-TreeNode* AVLTree::leftRotate(TreeNode* Current) {
-	return rotate(Current, true);
-}
-
-TreeNode* AVLTree::rightRotate(TreeNode* Current) {
-	return rotate(Current, false);
-}
-
 TreeNode* AVLTree::insertRotateRecursive(TreeNode* Current, int value, int ctr) {
 	operationCtr++;
 	actionCT[ctr]++;
@@ -62,8 +62,8 @@ TreeNode* AVLTree::insertRotateRecursive(TreeNode* Current, int value, int ctr) 
 	else if (value > Current->data) {
 		Current->right = insertRotateRecursive(Current->right, value, ctr);
 	}
-	else if (root->data == value) {
-		root->twin++;
+	else if (Current->data == value) {
+		Current->twin++;
 		return Current;
 	}
 
