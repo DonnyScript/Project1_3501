@@ -2,10 +2,7 @@
 using namespace std; 
 
 int AVLTree::getHeight(TreeNode* node) {
-	if (node == nullptr) {
-		return 0;
-	}
-	return node->height;
+	return (node == nullptr) ? 0 : node->height;
 }
 
 int AVLTree::getBalance(TreeNode* node) {
@@ -15,32 +12,45 @@ int AVLTree::getBalance(TreeNode* node) {
 	return getHeight(node->left) - getHeight(node->right);
 }
 
-TreeNode* AVLTree::leftRotate(TreeNode* Current) {
+int AVLTree::updateHeight(TreeNode* node) {
+	if (node == nullptr) {
+		return 0;
+	}
+	int leftHeight = (node->left != nullptr) ? node->left->height : 0;
+	int rightHeight = (node->right != nullptr) ? node->right->height : 0;
+	return 1 + max(leftHeight, rightHeight);
+}
+
+TreeNode* AVLTree::rotate(TreeNode* Current, bool isLeft) {
 	operationCtr++;
-	TreeNode* B = Current->right;
-	TreeNode* Y = B->left;
+	TreeNode* B = isLeft ? Current->right : Current->left;
+	if (B == nullptr) {
+		return Current;
+	}
+	TreeNode* Y = isLeft ? B->left : B->right;
 
-	B->left = Current;
-	Current->right = Y;
+	if (isLeft) {
+		B->left = Current;
+		Current->right = Y;
+	}
+	else {
+		B->right = Current;
+		Current->left = Y;
+	}
 
-	Current->height = 1 + max(Current->left->height, Current->right->height);
-	B->height = 1 + max(B->left->height, B->right->height);
+	
+	Current->height = updateHeight(Current);
+	B->height = updateHeight(B);
 
 	return B;
 }
 
+TreeNode* AVLTree::leftRotate(TreeNode* Current) {
+	return rotate(Current, true);
+}
+
 TreeNode* AVLTree::rightRotate(TreeNode* Current) {
-	operationCtr++;
-	TreeNode* B = Current->left;
-	TreeNode* Y = B->right;
-
-	B->right = Current;
-	Current->left = Y;
-
-	Current->height = 1 + max(Current->left->height, Current->right->height);
-	B->height = 1 + max(B->left->height, B->right->height);
-
-	return B;
+	return rotate(Current, false);
 }
 
 TreeNode* AVLTree::insertRotateRecursive(TreeNode* Current, int value, int ctr) {
@@ -57,22 +67,23 @@ TreeNode* AVLTree::insertRotateRecursive(TreeNode* Current, int value, int ctr) 
 	}
 	else if (root->data == value) {
 		root->twin++;
+		return Current;
 	}
 
-	Current->height = 1 + max(getHeight(Current->left), getHeight(Current->right));
+	Current->height = updateHeight(Current);
 	Current->balance = getBalance(Current);
 
-	if (Current->balance > 1 && value < Current->left->data) {
+	if (Current->left != nullptr && Current->balance > 1 && value < Current->left->data) {
 		return rightRotate(Current);
 	}
-	if (Current->balance < -1 && value > Current->right->data) {
+	if (Current->right != nullptr && Current->balance < -1 && value > Current->right->data) {
 		return leftRotate(Current);
 	}
-	if (Current->balance > 1 && value > Current->left->data) {
+	if (Current->left != nullptr && Current->balance > 1 && value > Current->left->data) {
 		Current->left = leftRotate(Current->left);
 		return rightRotate(Current);
 	}
-	if (Current->balance < -1 && value < Current->right->data) {
+	if (Current->right != nullptr && Current->balance < -1 && value < Current->right->data) {
 		Current->right = rightRotate(Current->right);
 		return leftRotate(Current);
 	}
