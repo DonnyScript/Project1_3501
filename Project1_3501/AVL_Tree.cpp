@@ -6,10 +6,7 @@ int AVLTree::getHeight(TreeNode* node) {
 }
 
 int AVLTree::getBalance(TreeNode* node) {
-	if (node == nullptr) {
-		return 0;
-	}
-	return getHeight(node->left) - getHeight(node->right);
+	return (node == nullptr) ? 0 : getHeight(node->left) - getHeight(node->right);
 }
 
 int AVLTree::updateHeight(TreeNode* node) {
