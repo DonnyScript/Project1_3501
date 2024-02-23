@@ -2,12 +2,12 @@
 using namespace std; 
 
 int AVLTree::getHeight(TreeNode* node) {
-	operationCtr++;
+	operationCtr+=2;
 	return (node == nullptr) ? 0 : node->height;
 }
 
 int AVLTree::getBalance(TreeNode* node) {
-	operationCtr++;
+	operationCtr+=2;
 	return (node == nullptr) ? 0 : getHeight(node->left) - getHeight(node->right);
 }
 
@@ -73,20 +73,17 @@ TreeNode* AVLTree::insertRotateRecursive(TreeNode* Current, int value, int ctr) 
 	Current->height = updateHeight(Current);
 	Current->balance = getBalance(Current);
 
-	if (Current->left == nullptr || Current->right == nullptr) {
-		return Current;
-	}
-	if (Current->balance > 1 && value < Current->left->data) {
+	if (Current->left != nullptr && Current->balance > 1 && value < Current->left->data) {
 		return rightRotate(Current);
 	}
-	if ( Current->balance < -1 && value > Current->right->data) {
+	if (Current->right != nullptr && Current->balance < -1 && value > Current->right->data) {
 		return leftRotate(Current);
 	}
-	if (Current->balance > 1 && value > Current->left->data) {
+	if (Current->left != nullptr && Current->balance > 1 && value > Current->left->data) {
 		Current->left = leftRotate(Current->left);
 		return rightRotate(Current);
 	}
-	if (Current->balance < -1 && value < Current->right->data) {
+	if (Current->right != nullptr && Current->balance < -1 && value < Current->right->data) {
 		Current->right = rightRotate(Current->right);
 		return leftRotate(Current);
 	}
