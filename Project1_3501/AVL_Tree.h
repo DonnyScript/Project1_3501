@@ -1,11 +1,6 @@
 #ifndef AVL_TREE_H
 #define AVL_TREE_H
-#include <string>
-#include <vector>
-#include <iostream>
-#include <fstream>
-#include <ctype.h>
-#include <stdexcept>
+#include "binary_search_tree.h"
 
 
 class AVLTree : public BinarySearchTree {

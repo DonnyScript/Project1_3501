@@ -1,5 +1,4 @@
 #include "AVL_Tree.h"
-#include "binary_search_tree.h"
 
 using namespace std;
 
