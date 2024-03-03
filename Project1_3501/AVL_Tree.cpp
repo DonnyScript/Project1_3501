@@ -97,7 +97,7 @@ TreeNode* AVLTree::deleteRotate(TreeNode* Current, int value) {
 		if (Current->right->twin) {
 			Current->right->twin = 1;
 		}
-		Current->right = deleteNode(Current->right, temp->data);
+		Current->right = deleteRotate(Current->right, temp->data);
 	}
 
 	Current->height = updateHeight(Current);
