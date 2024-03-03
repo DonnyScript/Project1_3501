@@ -160,7 +160,7 @@ TreeNode* AVLTree::insertRotateRecursive(TreeNode* Current, int value, int ctr) 
 	return Current;
 }
 
-void AVLTree::deleteRotate(int value){ //Put into alg
+void AVLTree::deleteRotate(int value) {
 	root = deleteRotate(root, value);
 	ofstream outputFile(BinarySearchTree::testTitle, ios::app);
 	if (outputFile.is_open()) {
@@ -173,7 +173,7 @@ void AVLTree::deleteRotate(int value){ //Put into alg
 		cout << "Operations: " << getOpCount() << endl;
 		outputFile << "Operations: " << getOpCount() << endl;
 		outputFile << "Tree Depth: " << treeHeight(root) << endl;
-		actionCT[3] = actionCT[3] + getOpCount();
+		actionCT[3] += getOpCount();
 		resetOpCount();
 		cout << "_____________________________________________________________" << endl;
 		outputFile << "_____________________________________________________________" << endl;
@@ -197,7 +197,7 @@ void AVLTree::insert(int value, int ctr){
 		cout << "Operations: " << getOpCount() << endl;
 		outputFile << "Operations: " << getOpCount() << endl;
 		outputFile << "Tree Depth: " << treeHeight(root) << endl;
-		actionCT[ctr] = actionCT[ctr] + getOpCount();
+		actionCT[ctr] += getOpCount();
 		resetOpCount();
 		cout << "_____________________________________________________________" << endl;
 		outputFile << "_____________________________________________________________" << endl;
