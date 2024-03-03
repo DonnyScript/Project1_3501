@@ -21,6 +21,13 @@ int AVLTree::updateHeight(TreeNode* node) {
 	return 1 + max(leftHeight, rightHeight);
 }
 
+TreeNode* AVLTree::getMinNode(TreeNode* Current){
+	if (!Current || !Current->left) {
+		return Current;
+	}
+	return getMinNode(Current->left);
+}
+
 TreeNode* AVLTree::rotate(TreeNode* Current, bool isLeft) {
 	operationCtr+= 4;
 	TreeNode* B = isLeft ? Current->right : Current->left;
@@ -53,9 +60,70 @@ TreeNode* AVLTree::rightRotate(TreeNode* Current) {
 	return rotate(Current, false);
 }
 
+TreeNode* AVLTree::deleteRotate(TreeNode* Current, int value) {
+	operationCtr++;
+	if (Current == nullptr) {
+		return nullptr;
+	}
+	else if (Current->twin > 1 && Current->data == value) {
+		Current->twin--;
+		return Current;
+	}
+	if (value < Current->data) {
+		Current->left = deleteRotate(Current->left, value);
+	}
+	else if (value > Current->data) {
+		Current->right = deleteRotate(Current->right, value);
+	}
+	else {
+		if (Current->twin > 1 && Current->data == value) {
+			return Current;
+		}
+		else if (Current->left == nullptr) {
+			TreeNode* temp = Current->right;
+			delete Current;
+			return temp;
+		}
+		else if (Current->right == nullptr) {
+			TreeNode* temp = Current->left;
+			delete Current;
+			return temp;
+		}
+
+		TreeNode* temp = Current->right;
+		getMinNode(Current);
+		Current->data = temp->data;
+		Current->twin = temp->twin;
+		if (Current->right->twin) {
+			Current->right->twin = 1;
+		}
+		Current->right = deleteNode(Current->right, temp->data);
+	}
+
+	Current->height = updateHeight(Current);
+	Current->balance = getBalance(Current);
+
+	if (Current->balance > 1 && getBalance(Current->left) >= 0) {
+		return rotate(Current, false);
+	}
+	if (Current->balance < -1 && getBalance(Current->right) <= 0) {
+		return rotate(Current, true);
+	}
+	if (Current->balance > 1 && getBalance(Current->left) < 0) {
+		Current->left = rotate(Current->left, true);
+		return rotate(Current, false);
+	}
+	if (Current->balance < -1 && getBalance(Current->right) > 0) {
+		Current->right = rotate(Current->right, false);
+		return rotate(Current, true);
+	}
+	return Current;
+}
+
+
+
 TreeNode* AVLTree::insertRotateRecursive(TreeNode* Current, int value, int ctr) {
 	operationCtr++;
-	actionCT[ctr]++;
 	if (Current == nullptr) {
 		return new TreeNode(value);
 	}
@@ -73,6 +141,7 @@ TreeNode* AVLTree::insertRotateRecursive(TreeNode* Current, int value, int ctr) 
 	Current->height = updateHeight(Current);
 	Current->balance = getBalance(Current);
 
+	
 	if (Current->left != nullptr && Current->balance > 1 && value < Current->left->data) {
 		return rightRotate(Current);
 	}
@@ -87,8 +156,31 @@ TreeNode* AVLTree::insertRotateRecursive(TreeNode* Current, int value, int ctr) 
 		Current->right = rightRotate(Current->right);
 		return leftRotate(Current);
 	}
-
+	
 	return Current;
+}
+
+void AVLTree::deleteRotate(int value){ //Put into alg
+	root = deleteRotate(root, value);
+	ofstream outputFile(BinarySearchTree::testTitle, ios::app);
+	if (outputFile.is_open()) {
+		cout << "Deleting: " << value << endl;
+		outputFile << "Deleting: " << value << endl;
+
+		displayTree(root, 0);
+
+		cout << "Tree Depth: " << treeHeight(root) << endl;
+		cout << "Operations: " << getOpCount() << endl;
+		outputFile << "Operations: " << getOpCount() << endl;
+		outputFile << "Tree Depth: " << treeHeight(root) << endl;
+		actionCT[3] = actionCT[3] + getOpCount();
+		resetOpCount();
+		cout << "_____________________________________________________________" << endl;
+		outputFile << "_____________________________________________________________" << endl;
+		cout << endl;
+		outputFile << endl;
+	}
+	outputFile.close();
 }
 
 void AVLTree::insert(int value, int ctr){
@@ -105,6 +197,7 @@ void AVLTree::insert(int value, int ctr){
 		cout << "Operations: " << getOpCount() << endl;
 		outputFile << "Operations: " << getOpCount() << endl;
 		outputFile << "Tree Depth: " << treeHeight(root) << endl;
+		actionCT[ctr] = actionCT[ctr] + getOpCount();
 		resetOpCount();
 		cout << "_____________________________________________________________" << endl;
 		outputFile << "_____________________________________________________________" << endl;

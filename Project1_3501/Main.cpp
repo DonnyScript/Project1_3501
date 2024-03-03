@@ -6,28 +6,32 @@ int main() {
 	string initialTree, actionFile, testTitle;
 	cout << "Type name of initial tree file: ";
 	getline(cin, initialTree);
-	/* 
 	cout << "Type name of Action File : ";
 	getline(cin, actionFile);
-	*/
 	cout << "What is the title of this test: ";
 	getline(cin, testTitle);
 	removeWhitespaceAtEnd(initialTree);
-	//removeWhitespaceAtEnd(actionFile);
+	removeWhitespaceAtEnd(actionFile);
 	initialTree += ".txt";
-	//actionFile += ".txt";
+	actionFile += ".txt";
 	vector<int> nodeValues;
 	vector<string> actionValues;
 	AVLTree AVL_DATA;
+	PreformAction actOnFile;
+
+	actOnFile.setTitle(testTitle);
 	AVL_DATA.setTitle(testTitle);
 
+
 	nodeValues = AVL_DATA.readAndCheckInput(initialTree);
-	//actionValues = AVL_DATA.readandCheckAction(actionFile);
+	actionValues = AVL_DATA.readandCheckAction(actionFile);
 
 	for (int val : nodeValues) {
 		AVL_DATA.actionCT[0]++;
 		AVL_DATA.insert(val,0);
 	}
-
+	
+	actOnFile.actOnTree(AVL_DATA,actionValues);
+	
 	return 0;
 }

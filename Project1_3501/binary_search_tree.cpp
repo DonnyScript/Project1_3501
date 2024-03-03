@@ -98,7 +98,6 @@ TreeNode* BinarySearchTree::insertRecursive(TreeNode* root, int value, int ctr) 
 TreeNode* BinarySearchTree::deleteNode(TreeNode* root, int value) {
 	operationCtr++;
 	actionCT[3]++;
-	ofstream outputFile(BinarySearchTree::testTitle, ios::app);
 	if (root == nullptr) {
 		return nullptr;
 	}

@@ -49,7 +49,7 @@ public:
 };
 
 class PreformAction : public BinarySearchTree {
-private:
+protected:
     string keys[3] = { "I","D","S" };
     string testTitle;
 public:
